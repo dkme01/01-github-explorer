@@ -7,13 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 module.exports = {
   mode: isDevelopment ? "development" : "production", // define o modo da aplicação, desenvolvimento ou produção
   devtool: isDevelopment ? "eval-source-map" : "source-map", // define como o código será exibido no source panel do devtools dos navegadores
-  entry: path.resolve(__dirname, "src", "index.jsx"), // define qual arquivo será observado para geração do bundle
+  entry: path.resolve(__dirname, "src", "index.tsx"), // define qual arquivo será observado para geração do bundle
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   }, // define aonde será gerado o bundle compilado da aplicação
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   }, // define extenções de arquivo ainda não comuns para os navegadores
   devServer: {
     contentBase: path.resolve(__dirname, "public"),
@@ -28,7 +28,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(j|t)sx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
